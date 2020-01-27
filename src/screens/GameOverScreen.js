@@ -1,5 +1,8 @@
 import React from "react";
-import { View, Text, StyleSheet, Button } from "react-native";
+import { View, StyleSheet, Button, Image } from "react-native";
+
+import { TitleText, BodyText } from "components/Text";
+import successImage from "assets/success.png";
 
 const GameOverScreen = ({
   guessRounds,
@@ -8,9 +11,12 @@ const GameOverScreen = ({
 }) => {
   return (
     <View style={styles.screen}>
-      <Text>Game Over!</Text>
-      <Text>Number of Rounds: {guessRounds}</Text>
-      <Text>Number was : {userSelectNumber}</Text>
+      <TitleText>Game Over!</TitleText>
+      <View style={styles.imageContainer} overflow="hidden">
+        <Image source={successImage} style={styles.image} resizeMode="cover" />
+      </View>
+      <BodyText>Number of Rounds: {guessRounds}</BodyText>
+      <BodyText>Number was : {userSelectNumber}</BodyText>
       <Button title="NEW GAME" onPress={configureNewGame} />
     </View>
   );
@@ -21,6 +27,18 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center"
+  },
+  imageContainer: {
+    width: 300,
+    height: 300,
+    borderRadius: 150,
+    borderColor: "black",
+    borderWidth: 1,
+    marginVertical: 30
+  },
+  image: {
+    width: "100%",
+    height: "100%"
   }
 });
 

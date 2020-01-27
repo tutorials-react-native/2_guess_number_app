@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { View, Text, StyleSheet, Button, Alert } from "react-native";
 
 import { Card, NumberContainer } from "components";
+import { BodyText, TitleText } from "components/Text";
 
 const generateRandomNumber = (min, max, exclude) => {
   min = Math.ceil(min);
@@ -35,10 +36,12 @@ const GameScreen = ({ selectedNumber, onGameOver }) => {
       (direction === "lower" && currentGuess < selectedNumber) ||
       (direction === "greater" && currentGuess > selectedNumber)
     ) {
-      Alert.alert("Don' lie!", "You know it is not...", {
-        text: "Sorry!",
-        style: "cancel"
-      });
+      Alert.alert("Don' lie!", "You know it is not...", [
+        {
+          text: "Sorry!",
+          style: "cancel"
+        }
+      ]);
       return;
     }
     if (direction === "lower") {
@@ -58,8 +61,8 @@ const GameScreen = ({ selectedNumber, onGameOver }) => {
 
   return (
     <View style={styles.screen}>
-      <Text>Opponent's Guess</Text>
-      <Text>Rounds: {rounds}</Text>
+      <TitleText>Opponent's Guess</TitleText>
+      <BodyText>Rounds: {rounds}</BodyText>
       <NumberContainer>{currentGuess}</NumberContainer>
       <Card style={styles.buttonConatiner}>
         <Button title="LOWER" onPress={nextGuessNumber.bind(this, "lower")} />

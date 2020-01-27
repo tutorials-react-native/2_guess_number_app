@@ -8,7 +8,8 @@ module.exports = function(api) {
         {
           root: ["./src/"],
           alias: {
-            color: "./src/constants/colors"
+            color: "./src/constants/colors",
+            assets: "./assets"
           }
         }
       ]
