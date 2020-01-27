@@ -5,14 +5,14 @@ import {
   StyleSheet,
   Button,
   TouchableWithoutFeedback,
-  Keyboard
+  Keyboard,
+  Alert
 } from "react-native";
 
 import Color from "color";
-import Card from "components/Card";
-import Input from "components/Input";
+import { Card, Input, NumberContainer } from "components";
 
-const StartGameScreen = () => {
+const StartGameScreen = ({ gameStartHandler }) => {
   const [enteredValue, setEnteredValue] = useState("");
   const [isConfirmed, setIsConfirmed] = useState(false);
   const [selectedNumber, setSelectedNumber] = useState();
@@ -23,16 +23,25 @@ const StartGameScreen = () => {
 
   const resetInputHandler = () => {
     setEnteredValue("");
+    setIsConfirmed(false);
+    setSelectedNumber("");
+    Keyboard.dismiss();
   };
 
   const confirmInputHandler = () => {
     const chosenNumber = parseInt(enteredValue);
-    if (chosenNumber === NaN || chosenNumber <= 0 || chosenNumber > 99) {
+    if (isNaN(chosenNumber) || chosenNumber <= 0 || chosenNumber > 99) {
+      Alert.alert(
+        "Invalid number!",
+        "Number has to be a nuumber between 1 and 99.",
+        [{ text: "Okay", style: "destructive", onPress: resetInputHandler }]
+      );
       return;
     }
     setIsConfirmed(true);
     setSelectedNumber(chosenNumber);
     setEnteredValue("");
+    Keyboard.dismiss();
   };
 
   return (
@@ -72,7 +81,18 @@ const StartGameScreen = () => {
             </View>
           </View>
         </Card>
-        {isConfirmed ? <Text>{selectedNumber}</Text> : null}
+        {isConfirmed ? (
+          <Card style={styles.selectedNumberContainer}>
+            <Text>You selected</Text>
+            <NumberContainer>{selectedNumber}</NumberContainer>
+            <Button
+              title="StartGame"
+              onPress={() => {
+                gameStartHandler(selectedNumber);
+              }}
+            />
+          </Card>
+        ) : null}
       </View>
     </TouchableWithoutFeedback>
   );
@@ -105,6 +125,11 @@ const styles = StyleSheet.create({
   input: {
     width: 50,
     textAlign: "center"
+  },
+  selectedNumberContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 20
   }
 });
 
