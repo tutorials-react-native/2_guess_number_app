@@ -12,6 +12,7 @@ import {
 import Color from "color";
 import { Card, Input, NumberContainer } from "components";
 import { TitleText, BodyText } from "components/Text";
+import { MainButton } from "components/Button";
 
 const StartGameScreen = ({ gameStartHandler }) => {
   const [enteredValue, setEnteredValue] = useState("");
@@ -86,12 +87,13 @@ const StartGameScreen = ({ gameStartHandler }) => {
           <Card style={styles.selectedNumberContainer}>
             <BodyText>You selected</BodyText>
             <NumberContainer>{selectedNumber}</NumberContainer>
-            <Button
-              title="StartGame"
+            <MainButton
               onPress={() => {
                 gameStartHandler(selectedNumber);
               }}
-            />
+            >
+              StartGame
+            </MainButton>
           </Card>
         ) : null}
       </View>
