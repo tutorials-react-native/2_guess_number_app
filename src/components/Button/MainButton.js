@@ -5,7 +5,7 @@ import Color from "color";
 
 const MainButton = ({ onPress, children }) => {
   return (
-    <TouchableOpacity onPress={onPress}>
+    <TouchableOpacity activeOpacity={0.8} onPress={onPress}>
       <View style={styles.button}>
         <Text style={styles.buttonText}>{children}</Text>
       </View>

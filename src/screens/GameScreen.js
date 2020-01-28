@@ -6,13 +6,16 @@ import {
   Button,
   Alert,
   ScrollView,
-  FlatList
+  FlatList,
+  Dimensions
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 import { Card, NumberContainer } from "components";
 import { BodyText, TitleText } from "components/Text";
 import { MainButton } from "components/Button";
+
+const isBigHeight = Dimensions.get("window").height > 600;
 
 const generateRandomNumber = (min, max, exclude) => {
   min = Math.ceil(min);
@@ -114,13 +117,13 @@ const styles = StyleSheet.create({
   buttonConatiner: {
     flexDirection: "row",
     justifyContent: "space-around",
-    marginTop: 20,
+    marginTop: isBigHeight ? 20 : 5,
     width: 400,
     maxWidth: "90%"
   },
   listContainer: {
     flex: 1,
-    width: "60%"
+    width: isBigHeight ? "60%" : "80%"
   },
   list: {
     // alignItems: "center",
