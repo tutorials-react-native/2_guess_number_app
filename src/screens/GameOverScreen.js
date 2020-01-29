@@ -54,14 +54,14 @@ const GameOverScreen = ({
 
 const styles = StyleSheet.create({
   scrollConatiner: {
-    flex: 1,
     justifyContent: "center",
     alignItems: "center"
   },
   screen: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    paddingVertical: 10
   },
   imageContainer: {
     width: windowWidth * 0.7,
