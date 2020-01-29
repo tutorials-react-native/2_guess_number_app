@@ -147,7 +147,7 @@ const GameScreen = ({ selectedNumber, onGameOver }) => {
         }}
       >
         <FlatList
-          keyExtractor={item => item}
+          keyExtractor={item => item.toString()}
           data={pastGuesses}
           renderItem={renderListItem.bind(this, pastGuesses.length)}
           contentContainerStyle={styles.list}

@@ -11,10 +11,9 @@ import {
 import Color from "color";
 
 const MainButton = ({ onPress, children }) => {
-  const Wrapper = Platform.select({
-    ios: TouchableOpacity,
-    android: Platform.Version > 21 ? TouchableNativeFeedback : TouchableOpacity
-  });
+  const Wrapper =
+    Platform.Version > 21 ? TouchableNativeFeedback : TouchableOpacity;
+
   return (
     <View style={styles.buttonContainer}>
       <Wrapper activeOpacity={0.8} onPress={onPress}>
